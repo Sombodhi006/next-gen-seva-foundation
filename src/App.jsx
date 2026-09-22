@@ -10,6 +10,7 @@ import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 import DonationModal from './components/DonationModal';
 import VolunteerModal from './components/VolunteerModal';
+import MobileBottomBar from './components/MobileBottomBar';
 
 export default function App() {
   const [isDonateOpen, setIsDonateOpen] = useState(false);
@@ -98,6 +99,12 @@ export default function App() {
       <VolunteerModal
         isOpen={isVolunteerOpen}
         onClose={() => setIsVolunteerOpen(false)}
+      />
+
+      {/* Floating Action Bar for Smartphones */}
+      <MobileBottomBar
+        onOpenDonate={(amt) => handleOpenDonate(amt)}
+        onOpenVolunteer={() => setIsVolunteerOpen(true)}
       />
     </div>
   );

@@ -32,56 +32,37 @@ export default function DrivesShowcase({ onOpenDonateWithPlan }) {
         </div>
 
         {/* Tab Navigation Pill Bar */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: '0.6rem',
-          marginBottom: '2.5rem'
-        }}>
-          {INITIATIVES.map((item) => {
-            const Icon = iconTabs[item.id] || Heart;
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.6rem',
-                  padding: '0.75rem 1.4rem',
-                  borderRadius: 'var(--radius-full)',
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '0.92rem',
-                  fontWeight: 700,
-                  transition: 'all 0.25s ease',
-                  backgroundColor: isActive ? 'var(--color-forest)' : '#FFFFFF',
-                  color: isActive ? '#FFFFFF' : 'var(--text-secondary)',
-                  border: isActive ? '1px solid var(--color-forest)' : '1px solid var(--border-medium)',
-                  boxShadow: isActive ? 'var(--shadow-glow-green)' : 'var(--shadow-sm)',
-                  cursor: 'pointer'
-                }}
-              >
-                <Icon size={16} color={isActive ? 'var(--color-gold)' : 'currentColor'} />
-                <span>{item.title.split(':')[0]}</span>
-              </button>
-            );
-          })}
+        <div className="initiatives-tabs-container">
+          <div className="initiatives-tabs-scroll">
+            {INITIATIVES.map((item) => {
+              const Icon = iconTabs[item.id] || Heart;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`initiative-tab-btn ${isActive ? 'active' : ''}`}
+                >
+                  <Icon size={16} color={isActive ? 'var(--color-gold)' : 'currentColor'} />
+                  <span>{item.title.split(':')[0]}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Active Initiative Showcase Card */}
-        <div style={{
+        <div className="initiative-card-grid" style={{
           backgroundColor: '#FFFFFF',
           borderRadius: 'var(--radius-xl)',
-          padding: '2.5rem',
+          padding: 'clamp(1.25rem, 3.5vw, 2.5rem)',
           boxShadow: 'var(--shadow-lg)',
           border: '1px solid var(--border-subtle)',
           display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: '2.5rem',
+          gap: 'clamp(1.25rem, 3vw, 2.5rem)',
           alignItems: 'center'
-        }} className="initiative-card-grid">
+        }}>
 
           {/* Left: Initiative Photos (Main + Sub) */}
           <div style={{ position: 'relative' }}>
@@ -94,9 +75,9 @@ export default function DrivesShowcase({ onOpenDonateWithPlan }) {
               <img
                 src={currentInitiative.image}
                 alt={currentInitiative.title}
+                className="initiative-main-image"
                 style={{
                   width: '100%',
-                  height: '380px',
                   objectFit: 'cover',
                   display: 'block'
                 }}
@@ -205,9 +186,73 @@ export default function DrivesShowcase({ onOpenDonateWithPlan }) {
       </div>
 
       <style>{`
+        .initiatives-tabs-container {
+          display: flex;
+          justifyContent: center;
+          margin-bottom: 2.5rem;
+          width: 100%;
+        }
+
+        .initiatives-tabs-scroll {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.6rem;
+        }
+
+        .initiative-tab-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+          padding: 0.75rem 1.3rem;
+          border-radius: var(--radius-full);
+          font-family: var(--font-heading);
+          font-size: 0.92rem;
+          font-weight: 700;
+          transition: all 0.25s ease;
+          background-color: #FFFFFF;
+          color: var(--text-secondary);
+          border: 1px solid var(--border-medium);
+          box-shadow: var(--shadow-sm);
+          cursor: pointer;
+          white-space: nowrap;
+        }
+
+        .initiative-tab-btn.active {
+          background-color: var(--color-forest);
+          color: #FFFFFF;
+          border-color: var(--color-forest);
+          box-shadow: var(--shadow-glow-green);
+        }
+
+        .initiative-main-image {
+          height: 380px;
+        }
+
         @media (min-width: 960px) {
           .initiative-card-grid {
             grid-template-columns: 1fr 1fr !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .initiatives-tabs-container {
+            overflow-x: auto;
+            justify-content: flex-start;
+            padding-bottom: 0.6rem;
+            -webkit-overflow-scrolling: touch;
+          }
+          .initiatives-tabs-scroll {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            padding: 0 0.5rem;
+          }
+          .initiative-main-image {
+            height: 240px !important;
+          }
+          .initiative-card-grid .btn {
+            width: 100% !important;
+            justify-content: center !important;
           }
         }
       `}</style>

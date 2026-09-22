@@ -99,7 +99,7 @@ export default function InstagramConnect() {
             </div>
 
             {/* Right Mini Reel / Photo Collage */}
-            <div style={{
+            <div className="grid-thumbnails" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '0.75rem'
@@ -124,6 +124,15 @@ export default function InstagramConnect() {
         @media (min-width: 960px) {
           .insta-banner-grid {
             grid-template-columns: 1.2fr 0.8fr !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .insta-banner-grid .btn {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .insta-banner-grid .grid-thumbnails div {
+            height: 95px !important;
           }
         }
       `}</style>

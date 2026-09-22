@@ -161,8 +161,7 @@ export default function PhotoJournal() {
             onClick={() => setSelectedPhoto(null)}
             style={{ zIndex: 1100 }}
           >
-            <div 
-              style={{
+              <div className="photo-lightbox-modal" style={{
                 maxWidth: '750px',
                 width: '100%',
                 backgroundColor: '#FFFFFF',
@@ -179,10 +178,10 @@ export default function PhotoJournal() {
                 onClick={() => setSelectedPhoto(null)}
                 style={{
                   position: 'absolute',
-                  top: '1rem',
-                  right: '1rem',
-                  width: '36px',
-                  height: '36px',
+                  top: '0.85rem',
+                  right: '0.85rem',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(0, 0, 0, 0.65)',
                   color: '#FFFFFF',
@@ -197,7 +196,7 @@ export default function PhotoJournal() {
                 <X size={20} />
               </button>
 
-              <div style={{ maxHeight: '65vh', overflow: 'hidden', backgroundColor: '#0B251A' }}>
+              <div className="photo-lightbox-image-wrap" style={{ maxHeight: '65vh', overflow: 'hidden', backgroundColor: '#0B251A' }}>
                 <img
                   src={selectedPhoto.image}
                   alt={selectedPhoto.title}
@@ -211,12 +210,12 @@ export default function PhotoJournal() {
                 />
               </div>
 
-              <div style={{ padding: '1.5rem 1.75rem' }}>
+              <div className="photo-lightbox-content" style={{ padding: '1.25rem 1.5rem' }}>
                 <div style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.4rem',
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   fontWeight: 700,
                   color: 'var(--color-amber)',
                   marginBottom: '0.3rem'
@@ -225,11 +224,11 @@ export default function PhotoJournal() {
                   <span>{selectedPhoto.location}</span>
                 </div>
 
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--color-forest)', marginBottom: '0.5rem' }}>
+                <h3 style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)', fontWeight: 800, color: 'var(--color-forest)', marginBottom: '0.4rem' }}>
                   {selectedPhoto.title}
                 </h3>
 
-                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
                   {selectedPhoto.description}
                 </p>
               </div>
@@ -238,6 +237,23 @@ export default function PhotoJournal() {
         )}
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .photo-lightbox-modal {
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 0.5rem;
+          }
+          .photo-lightbox-image-wrap,
+          .photo-lightbox-image-wrap img {
+            max-height: 45vh !important;
+          }
+          .photo-lightbox-content {
+            padding: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -289,9 +289,50 @@ img {
   position: relative;
 }
 
-/* Responsive Utilities */
+/* Responsive Utilities & Mobile Viewport Polish */
 @media (max-width: 768px) {
+  html, body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .container {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  section {
+    padding: 3.25rem 0 !important;
+  }
+
   .section-title {
-    font-size: 2rem;
+    font-size: 1.85rem !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.015em;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .modal-content {
+    max-height: 94vh;
+    border-radius: var(--radius-md);
+  }
+
+  /* Prevent iOS automatic zoom on focus by ensuring at least 16px */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Add bottom clearance for mobile sticky bar */
+  footer {
+    padding-bottom: 5.5rem !important;
   }
 }
+

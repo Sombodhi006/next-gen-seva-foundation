@@ -98,7 +98,7 @@ export default function VolunteerModal({ isOpen, onClose }) {
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div className="volunteer-contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '0.3rem' }}>
                     WhatsApp Number *
@@ -227,6 +227,14 @@ export default function VolunteerModal({ isOpen, onClose }) {
         )}
 
       </div>
+
+      <style>{`
+        @media (max-width: 500px) {
+          .volunteer-contact-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

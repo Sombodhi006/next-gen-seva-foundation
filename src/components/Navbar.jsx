@@ -44,30 +44,37 @@ export default function Navbar({ onOpenDonate, onOpenVolunteer }) {
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         
         {/* Brand & Logo */}
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', textDecoration: 'none' }}>
+        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}>
           <img 
             src="/logo.svg" 
             alt="Next Gen Seva Foundation Logo" 
-            style={{ width: '48px', height: '48px', objectFit: 'contain' }}
+            className="nav-logo"
+            style={{ width: '46px', height: '46px', objectFit: 'contain', flexShrink: 0 }}
           />
           <div>
-            <div style={{ 
-              fontFamily: 'var(--font-heading)', 
-              fontWeight: 800, 
-              fontSize: '1.2rem', 
-              color: 'var(--color-forest)', 
-              letterSpacing: '0.02em',
-              lineHeight: 1.1
-            }}>
+            <div 
+              className="nav-brand-title"
+              style={{ 
+                fontFamily: 'var(--font-heading)', 
+                fontWeight: 800, 
+                fontSize: '1.15rem', 
+                color: 'var(--color-forest)', 
+                letterSpacing: '0.02em',
+                lineHeight: 1.1
+              }}
+            >
               NEXT GEN SEVA
             </div>
-            <div style={{ 
-              fontSize: '0.72rem', 
-              fontWeight: 700, 
-              color: 'var(--color-amber)', 
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase'
-            }}>
+            <div 
+              className="nav-brand-sub"
+              style={{ 
+                fontSize: '0.7rem', 
+                fontWeight: 700, 
+                color: 'var(--color-amber)', 
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase'
+              }}
+            >
               Kolkata • Help Today • Build Tomorrow
             </div>
           </div>
@@ -268,12 +275,26 @@ export default function Navbar({ onOpenDonate, onOpenVolunteer }) {
         </div>
       )}
 
-      {/* Inline media query CSS for desktop nav display */}
+      {/* Inline media query CSS for desktop & mobile nav display */}
       <style>{`
         @media (min-width: 960px) {
           .desktop-nav { display: flex !important; }
           .desktop-actions { display: flex !important; }
           .mobile-toggle { display: none !important; }
+        }
+
+        @media (max-width: 440px) {
+          .nav-logo {
+            width: 38px !important;
+            height: 38px !important;
+          }
+          .nav-brand-title {
+            font-size: 0.98rem !important;
+          }
+          .nav-brand-sub {
+            font-size: 0.62rem !important;
+            letter-spacing: 0.06em !important;
+          }
         }
       `}</style>
     </header>
