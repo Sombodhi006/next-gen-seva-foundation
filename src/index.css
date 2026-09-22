@@ -1,0 +1,297 @@
+/* ==========================================================================
+   Next Gen Seva Foundation — Design System & Custom Tokens
+   "Help Today • Build Tomorrow" (Kolkata)
+   ========================================================================== */
+
+:root {
+  /* Brand Core Colors */
+  --color-forest: #143D2B;
+  --color-forest-dark: #0B251A;
+  --color-forest-deep: #071911;
+  --color-forest-light: #1E543C;
+  --color-emerald: #246B48;
+  --color-sprout: #3B9E5A;
+  --color-sprout-soft: #E8F5E9;
+  
+  /* Sun & Gold Accents */
+  --color-gold: #F4A213;
+  --color-gold-hover: #E0910A;
+  --color-gold-light: #FEF7EC;
+  --color-amber: #D97706;
+
+  /* Surfaces & Backgrounds */
+  --bg-canvas: #FAF7F2;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #FFFFFF;
+  --bg-surface-subtle: #F3EFE8;
+  --bg-dark-section: #0E2A1E;
+
+  /* Typography Colors */
+  --text-primary: #12281E;
+  --text-secondary: #486357;
+  --text-muted: #738E82;
+  --text-on-dark: #F5FAF7;
+  --text-on-dark-muted: #A3C2B4;
+
+  /* Borders & Shadows */
+  --border-subtle: rgba(20, 61, 43, 0.08);
+  --border-medium: rgba(20, 61, 43, 0.16);
+  --border-focus: rgba(244, 162, 19, 0.5);
+  
+  --shadow-sm: 0 2px 8px rgba(11, 37, 26, 0.04);
+  --shadow-md: 0 8px 24px rgba(11, 37, 26, 0.08);
+  --shadow-lg: 0 16px 40px rgba(11, 37, 26, 0.12);
+  --shadow-xl: 0 24px 60px rgba(11, 37, 26, 0.16);
+  --shadow-glow-gold: 0 8px 30px rgba(244, 162, 19, 0.35);
+  --shadow-glow-green: 0 8px 30px rgba(30, 107, 71, 0.35);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Section Header Utility */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-sprout-soft);
+  color: var(--color-forest);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.85rem;
+  border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.section-tag.gold {
+  background-color: var(--color-gold-light);
+  color: var(--color-amber);
+  border-color: rgba(244, 162, 19, 0.3);
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 800;
+  color: var(--color-forest);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.65;
+}
+
+/* Primary CTA Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-hover) 100%);
+  color: #1A170F;
+  box-shadow: 0 4px 16px rgba(244, 162, 19, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(244, 162, 19, 0.45);
+  background: linear-gradient(135deg, #FDB833 0%, var(--color-gold) 100%);
+}
+
+.btn-forest {
+  background-color: var(--color-forest);
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(20, 61, 43, 0.25);
+}
+
+.btn-forest:hover {
+  background-color: var(--color-forest-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(20, 61, 43, 0.35);
+  color: #FFFFFF;
+}
+
+.btn-outline {
+  border: 1.5px solid var(--color-forest);
+  color: var(--color-forest);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background-color: rgba(20, 61, 43, 0.06);
+  transform: translateY(-1px);
+}
+
+.btn-white {
+  background-color: #FFFFFF;
+  color: var(--color-forest);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-white:hover {
+  background-color: #FAF7F2;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: floatBadge 4s infinite ease-in-out;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-md);
+}
+
+/* Modal Backdrops & Overlays */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(11, 37, 26, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+}
