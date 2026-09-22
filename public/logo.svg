@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sunGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#E58E1B" />
+      <stop offset="100%" stop-color="#F7C033" />
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E6B47" />
+      <stop offset="100%" stop-color="#3FA669" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular protective arc -->
+  <path d="M 215 110 C 130 160 145 285 180 340 C 160 300 155 210 230 135 C 265 100 305 85 350 85 C 330 92 315 100 295 115" fill="#143D2B" />
+
+  <!-- Sun Rays & Rising Sun -->
+  <g id="sun">
+    <!-- Center disc -->
+    <path d="M 330 140 A 50 50 0 0 1 430 140 Z" fill="url(#sunGrad)" />
+    <!-- Rays -->
+    <rect x="375" y="65" width="8" height="22" rx="4" fill="#F7C033" />
+    <rect x="330" y="80" width="8" height="20" rx="4" fill="#F7C033" transform="rotate(-30 334 90)" />
+    <rect x="420" y="80" width="8" height="20" rx="4" fill="#F7C033" transform="rotate(30 424 90)" />
+    <rect x="295" y="115" width="8" height="18" rx="4" fill="#F7C033" transform="rotate(-60 299 124)" />
+    <rect x="450" y="115" width="8" height="18" rx="4" fill="#F7C033" transform="rotate(60 454 124)" />
+  </g>
+
+  <!-- Mountain / Rocky Crag -->
+  <path d="M 245 290 Q 290 270 320 230 Q 360 205 410 215 L 430 255 L 290 315 Z" fill="#143D2B" />
+
+  <!-- Climbing Figures (Helping Hand) -->
+  <!-- Top Helper -->
+  <circle cx="370" cy="140" r="14" fill="#143D2B" />
+  <path d="M 365 155 C 380 155 395 165 405 185 L 440 235 L 420 245 L 395 205 L 385 240 L 355 240 L 365 195 L 340 180 Z" fill="#143D2B" />
+  <!-- Extending reaching arm -->
+  <path d="M 355 175 L 305 210 L 312 218 L 362 183 Z" fill="#143D2B" />
+
+  <!-- Climber reaching up -->
+  <circle cx="235" cy="205" r="14" fill="#143D2B" />
+  <path d="M 230 220 C 240 220 250 230 255 250 L 260 280 L 245 285 L 240 260 L 205 280 L 190 270 L 225 240 L 210 245 Z" fill="#143D2B" />
+  <!-- Climber's reaching arm meeting helper -->
+  <path d="M 240 230 L 308 212 L 312 220 L 244 238 Z" fill="#143D2B" />
+
+  <!-- Protective Palm / Hand at the bottom cradling the base -->
+  <path d="M 155 260 C 160 330 200 375 290 380 C 375 385 435 340 455 260 C 435 315 385 340 315 335 C 235 330 185 295 180 250 Z" fill="#143D2B" />
+  <!-- Thumb & Fingers curl -->
+  <path d="M 220 325 C 270 340 350 335 410 300 C 445 275 460 245 465 225 C 455 260 415 310 330 325 C 270 335 225 315 220 325 Z" fill="#143D2B" opacity="0.9" />
+
+  <!-- Sprouting Plant / Leaf on the right -->
+  <path d="M 445 250 Q 450 180 448 160 Q 455 190 452 245 Z" fill="#1E6B47" />
+  <!-- Leaf 1 -->
+  <path d="M 448 200 C 430 190 420 170 425 155 C 440 160 448 180 448 200 Z" fill="url(#leafGrad)" />
+  <!-- Leaf 2 -->
+  <path d="M 450 175 C 465 160 478 165 480 180 C 470 188 458 185 450 175 Z" fill="url(#leafGrad)" />
+  <!-- Top Leaflet -->
+  <path d="M 448 160 C 440 145 448 135 452 135 C 458 140 455 150 448 160 Z" fill="url(#leafGrad)" />
+
+  <!-- Wordmark Section -->
+  <!-- NEXT GEN -->
+  <g transform="translate(300, 470)" text-anchor="middle">
+    <text font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="64" letter-spacing="4" fill="#143D2B">
+      NEXT GEN
+    </text>
+  </g>
+
+  <!-- SEVA FOUNDATION -->
+  <g transform="translate(300, 520)" text-anchor="middle">
+    <text font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="28" letter-spacing="8" fill="#143D2B">
+      SEVA FOUNDATION
+    </text>
+  </g>
+
+  <!-- Tagline: HELP TODAY • BUILD TOMORROW -->
+  <g transform="translate(300, 565)" text-anchor="middle">
+    <!-- Left rule -->
+    <line x1="-210" y1="-7" x2="-155" y2="-7" stroke="#143D2B" stroke-width="2.5" stroke-linecap="round" />
+    <text font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16" letter-spacing="4" fill="#143D2B">
+      HELP TODAY  •  BUILD TOMORROW
+    </text>
+    <!-- Right rule -->
+    <line x1="155" y1="-7" x2="210" y2="-7" stroke="#143D2B" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+</svg>
