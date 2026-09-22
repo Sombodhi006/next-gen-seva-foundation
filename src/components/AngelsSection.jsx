@@ -44,9 +44,9 @@ export default function AngelsSection({ onOpenVolunteer }) {
               <img
                 src="/images/youth_volunteers_angels.png"
                 alt="Youth volunteers of Next Gen Seva Foundation in Kolkata"
+                className="angels-main-photo"
                 style={{
                   width: '100%',
-                  height: '420px',
                   objectFit: 'cover',
                   display: 'block'
                 }}
@@ -156,9 +156,23 @@ export default function AngelsSection({ onOpenVolunteer }) {
       </div>
 
       <style>{`
+        .angels-main-photo {
+          height: 420px;
+        }
+
         @media (min-width: 960px) {
           .angels-grid {
             grid-template-columns: 0.95fr 1.05fr !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .angels-main-photo {
+            height: 270px !important;
+          }
+          .angels-grid .btn {
+            width: 100% !important;
+            justify-content: center !important;
           }
         }
       `}</style>

@@ -225,8 +225,8 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
             {/* Tiered Amount Cards */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-              gap: '0.75rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+              gap: '0.65rem',
               marginBottom: '1.25rem'
             }}>
               {DONATION_TIERS.map((tier) => {
@@ -327,7 +327,7 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
             </div>
 
             {/* Donor Quick Details */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
+            <div className="donor-quick-details" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '1.25rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
                   Your Name (Optional)
@@ -646,6 +646,14 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
         )}
 
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .donor-quick-details {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

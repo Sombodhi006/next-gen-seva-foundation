@@ -104,13 +104,13 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
             </p>
 
             {/* Action Buttons */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', marginBottom: '2.5rem' }}>
+            <div className="hero-actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', alignItems: 'center', marginBottom: '2rem' }}>
               <button
                 onClick={onOpenDonate}
-                className="btn btn-primary"
+                className="btn btn-primary hero-btn-donate"
                 style={{
-                  padding: '0.95rem 2rem',
-                  fontSize: '1.05rem'
+                  padding: '0.95rem 1.8rem',
+                  fontSize: '1rem'
                 }}
               >
                 <Heart size={18} fill="currentColor" />
@@ -119,10 +119,10 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
 
               <button
                 onClick={onOpenVolunteer}
-                className="btn btn-forest"
+                className="btn btn-forest hero-btn-volunteer"
                 style={{
-                  padding: '0.95rem 1.8rem',
-                  fontSize: '1.02rem'
+                  padding: '0.95rem 1.6rem',
+                  fontSize: '0.98rem'
                 }}
               >
                 <Users size={18} />
@@ -134,9 +134,9 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '1.5rem',
+              gap: '1.25rem',
               borderTop: '1px solid rgba(20, 61, 43, 0.1)',
-              paddingTop: '1.5rem'
+              paddingTop: '1.25rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <div style={{
@@ -152,8 +152,8 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
                   <ShieldCheck size={18} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-forest)' }}>100% Direct Relief</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Every rupee goes to field supplies</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-forest)' }}>100% Direct Relief</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Zero admin cuts from donations</div>
                 </div>
               </div>
 
@@ -171,8 +171,8 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
                   <Sparkles size={18} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-forest)' }}>Youth-Led Impact</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>50+ volunteer students & professionals</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-forest)' }}>Youth-Led Impact</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>50+ volunteer students & professionals</div>
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
           </div>
 
           {/* Right Column: Real Kolkata Field Work Visual Grid */}
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} className="hero-image-wrapper">
 
             {/* Main Featured Photo (Dum Dum Platform Feeding) */}
             <div style={{
@@ -194,9 +194,9 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
               <img
                 src="/images/dumdum_platform_feeding.png"
                 alt="Late night food distribution at Dum Dum railway station platform"
+                className="hero-main-photo"
                 style={{
                   width: '100%',
-                  height: '420px',
                   objectFit: 'cover',
                   display: 'block'
                 }}
@@ -207,8 +207,8 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
                 bottom: 0,
                 left: 0,
                 right: 0,
-                padding: '1.5rem',
-                background: 'linear-gradient(to top, rgba(11, 37, 26, 0.92) 0%, rgba(11, 37, 26, 0.4) 60%, transparent 100%)',
+                padding: 'clamp(1rem, 3vw, 1.5rem)',
+                background: 'linear-gradient(to top, rgba(11, 37, 26, 0.94) 0%, rgba(11, 37, 26, 0.45) 60%, transparent 100%)',
                 color: '#FFFFFF'
               }}>
                 <div style={{
@@ -216,19 +216,19 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
                   backgroundColor: 'var(--color-gold)',
                   color: '#1A170F',
                   fontWeight: 800,
-                  fontSize: '0.72rem',
+                  fontSize: '0.7rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
-                  padding: '0.2rem 0.6rem',
+                  padding: '0.2rem 0.55rem',
                   borderRadius: 'var(--radius-sm)',
-                  marginBottom: '0.4rem'
+                  marginBottom: '0.35rem'
                 }}>
                   Live Drive Spot: Dum Dum Station
                 </div>
-                <h3 style={{ color: '#FFFFFF', fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.2rem' }}>
+                <h3 style={{ color: '#FFFFFF', fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', fontWeight: 700, marginBottom: '0.2rem' }}>
                   Aahaar Seva: Warmth in the Darkest Hours
                 </h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.85rem' }}>
+                <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.8rem' }}>
                   Hand-delivering fresh dinner packs to destitute elders on railway platforms.
                 </p>
               </div>
@@ -236,39 +236,37 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
 
             {/* Overlapping Floating Card 1: Free Karate Champions */}
             <div 
-              className="glass-card animate-float"
+              className="glass-card hero-floating-card-1 animate-float"
               style={{
                 position: 'absolute',
-                top: '-20px',
-                right: '-15px',
-                padding: '0.75rem',
+                padding: '0.7rem 0.85rem',
                 borderRadius: 'var(--radius-lg)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.8rem',
-                maxWidth: '260px',
+                gap: '0.75rem',
                 boxShadow: 'var(--shadow-lg)',
-                backgroundColor: 'rgba(255, 255, 255, 0.94)'
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                zIndex: 2
               }}
             >
               <img
                 src="/images/free_karate_coaching.png"
                 alt="Free youth karate students"
                 style={{
-                  width: '60px',
-                  height: '60px',
+                  width: '52px',
+                  height: '52px',
                   borderRadius: 'var(--radius-md)',
                   objectFit: 'cover'
                 }}
               />
               <div>
-                <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-sprout)', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--color-sprout)', textTransform: 'uppercase' }}>
                   Project Shakti
                 </div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--color-forest)', lineHeight: 1.2 }}>
-                  120+ Kids in Free Karate
+                <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-forest)', lineHeight: 1.2 }}>
+                  120+ Kids in Karate
                 </div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                   Self-defense & belts
                 </div>
               </div>
@@ -276,39 +274,37 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
 
             {/* Overlapping Floating Card 2: Orphanage Celebrations */}
             <div 
-              className="glass-card"
+              className="glass-card hero-floating-card-2"
               style={{
                 position: 'absolute',
-                bottom: '-25px',
-                left: '-15px',
-                padding: '0.75rem 1rem',
+                padding: '0.7rem 0.85rem',
                 borderRadius: 'var(--radius-lg)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.85rem',
-                maxWidth: '280px',
+                gap: '0.75rem',
                 boxShadow: 'var(--shadow-lg)',
-                backgroundColor: 'rgba(255, 255, 255, 0.94)'
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                zIndex: 2
               }}
             >
               <img
                 src="/images/orphanage_birthday_celebration.png"
                 alt="Orphanage birthday celebration"
                 style={{
-                  width: '56px',
-                  height: '56px',
+                  width: '52px',
+                  height: '52px',
                   borderRadius: 'var(--radius-md)',
                   objectFit: 'cover'
                 }}
               />
               <div>
-                <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--color-amber)', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-amber)', textTransform: 'uppercase' }}>
                   Project Khushiyan
                 </div>
-                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--color-forest)' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-forest)' }}>
                   Orphanage Birthdays
                 </div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                   Cakes, gifts & love
                 </div>
               </div>
@@ -320,9 +316,45 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
       </div>
 
       <style>{`
+        .hero-main-photo {
+          height: 420px;
+        }
+        .hero-floating-card-1 {
+          top: -20px;
+          right: -15px;
+          max-width: 250px;
+        }
+        .hero-floating-card-2 {
+          bottom: -25px;
+          left: -15px;
+          max-width: 260px;
+        }
+
         @media (min-width: 960px) {
           .hero-grid {
             grid-template-columns: 1.1fr 0.9fr !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-main-photo {
+            height: 280px !important;
+          }
+          .hero-actions .btn {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .hero-floating-card-1 {
+            top: 10px !important;
+            right: 10px !important;
+            max-width: 220px !important;
+            padding: 0.5rem 0.75rem !important;
+          }
+          .hero-floating-card-2 {
+            bottom: 10px !important;
+            left: 10px !important;
+            max-width: 230px !important;
+            padding: 0.5rem 0.75rem !important;
           }
         }
       `}</style>

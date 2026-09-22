@@ -48,16 +48,13 @@ export default function ImpactStats() {
         </div>
 
         {/* Stats Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-          gap: '1.25rem'
-        }}>
+        <div className="impact-stats-grid">
           {IMPACT_STATS.map((stat, idx) => {
             const IconComponent = iconMap[stat.icon] || Utensils;
             return (
               <div 
                 key={stat.id}
+                className="impact-stat-card"
                 style={{
                   backgroundColor: 'var(--bg-canvas)',
                   borderRadius: 'var(--radius-lg)',
@@ -96,15 +93,18 @@ export default function ImpactStats() {
                 </div>
 
                 {/* Animated Stat Value */}
-                <div style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '2.5rem',
-                  fontWeight: 900,
-                  color: 'var(--color-forest)',
-                  lineHeight: 1,
-                  marginBottom: '0.4rem',
-                  letterSpacing: '-0.02em'
-                }}>
+                <div 
+                  className="impact-stat-value"
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '2.5rem',
+                    fontWeight: 900,
+                    color: 'var(--color-forest)',
+                    lineHeight: 1,
+                    marginBottom: '0.4rem',
+                    letterSpacing: '-0.02em'
+                  }}
+                >
                   {counts[idx].toLocaleString()}{stat.suffix}
                 </div>
 
@@ -132,6 +132,27 @@ export default function ImpactStats() {
         </div>
 
       </div>
+
+      <style>{`
+        .impact-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.25rem;
+        }
+
+        @media (max-width: 640px) {
+          .impact-stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.75rem !important;
+          }
+          .impact-stat-card {
+            padding: 1.25rem 0.65rem !important;
+          }
+          .impact-stat-value {
+            font-size: 1.85rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
