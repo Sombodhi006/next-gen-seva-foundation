@@ -79,6 +79,246 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
     onClose();
   };
 
+  const handlePrintReceipt = () => {
+    const receiptNo = `NGSF-80G-${Math.floor(100000 + Math.random() * 900000)}`;
+    const dateStr = new Date().toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+    
+    const printWindow = window.open('', '_blank', 'width=780,height=900');
+    if (!printWindow) {
+      window.print();
+      return;
+    }
+
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="utf-8">
+          <title>80G Tax Exemption Receipt - ${receiptNo}</title>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+            body { 
+              font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+              color: #143D2B; 
+              padding: 30px; 
+              margin: 0; 
+              background: #F8FBF9; 
+            }
+            .receipt-card { 
+              background: #FFFFFF;
+              border: 2px solid #143D2B; 
+              border-radius: 12px; 
+              padding: 36px; 
+              max-width: 660px; 
+              margin: 0 auto; 
+              box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            }
+            .header-bar { 
+              display: flex; 
+              align-items: center; 
+              justify-content: space-between; 
+              border-bottom: 2px solid #EAA428; 
+              padding-bottom: 20px; 
+            }
+            .brand-name { 
+              font-size: 22px; 
+              font-weight: 800; 
+              color: #143D2B; 
+              margin: 0 0 4px 0; 
+              letter-spacing: -0.01em;
+            }
+            .tagline { 
+              font-size: 13px; 
+              color: #EAA428; 
+              font-weight: 700; 
+              margin-bottom: 4px;
+            }
+            .meta-text { 
+              font-size: 11px; 
+              color: #555; 
+            }
+            .badge-80g { 
+              background: #E8F5E9; 
+              color: #1B5E20; 
+              border: 1px solid #A5D6A7; 
+              font-weight: 800; 
+              font-size: 11px; 
+              padding: 6px 12px; 
+              border-radius: 20px; 
+              text-align: right;
+            }
+            .voucher-title { 
+              text-align: center; 
+              margin: 24px 0 18px 0; 
+            }
+            .voucher-title h2 { 
+              font-size: 17px; 
+              font-weight: 800; 
+              color: #143D2B; 
+              text-transform: uppercase; 
+              letter-spacing: 1.5px; 
+              margin: 0; 
+            }
+            .details-table { 
+              width: 100%; 
+              border-collapse: collapse; 
+              margin-bottom: 20px; 
+            }
+            .details-table td { 
+              padding: 10px 12px; 
+              border-bottom: 1px solid #EDF2F7; 
+              font-size: 13.5px; 
+            }
+            .details-table td.label { 
+              font-weight: 600; 
+              color: #4A5568; 
+              width: 42%; 
+            }
+            .details-table td.value { 
+              font-weight: 700; 
+              color: #1A202C; 
+            }
+            .amount-highlight { 
+              font-size: 18px !important; 
+              color: #143D2B !important; 
+              font-weight: 800 !important; 
+            }
+            .tax-banner { 
+              background: #FFFBEB; 
+              border: 1px solid #FCD34D; 
+              border-left: 4px solid #D97706; 
+              padding: 12px 14px; 
+              border-radius: 6px; 
+              font-size: 12.5px; 
+              color: #92400E; 
+              line-height: 1.5; 
+              margin: 20px 0; 
+            }
+            .footer-row { 
+              display: flex; 
+              justify-content: space-between; 
+              align-items: flex-end; 
+              margin-top: 35px; 
+              padding-top: 20px; 
+              border-top: 1px dashed #CBD5E0; 
+            }
+            .org-stamp { 
+              font-size: 11px; 
+              color: #718096; 
+              line-height: 1.5; 
+            }
+            .signature-block { 
+              text-align: center; 
+            }
+            .signature-svg { 
+              font-family: 'Brush Script MT', cursive, sans-serif; 
+              font-size: 22px; 
+              color: #143D2B; 
+              margin-bottom: 6px; 
+            }
+            .signature-role { 
+              font-size: 11px; 
+              font-weight: 700; 
+              color: #2D3748; 
+              border-top: 1px solid #4A5568; 
+              padding-top: 4px; 
+            }
+            @media print {
+              body { background: #FFFFFF; padding: 0; }
+              .receipt-card { border: none; box-shadow: none; padding: 15px; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="receipt-card">
+            <div class="header-bar">
+              <div>
+                <h1 class="brand-name">NEXT GEN SEVA FOUNDATION</h1>
+                <div class="tagline">HELP TODAY • BUILD TOMORROW</div>
+                <div class="meta-text">CIN: ${NGO_CONFIG.registrationNo} • Registered Section 8 Non-Profit</div>
+                <div class="meta-text">Kolkata, West Bengal, India</div>
+              </div>
+              <div>
+                <div class="badge-80g">80G & 12A CERTIFIED</div>
+                <div style="font-size: 10px; color: #4B5563; text-align: right; margin-top: 4px;">50% Tax Deductible</div>
+              </div>
+            </div>
+
+            <div class="voucher-title">
+              <h2>Official Donation Receipt</h2>
+            </div>
+
+            <table class="details-table">
+              <tr>
+                <td class="label">Receipt Number:</td>
+                <td class="value" style="font-family: monospace;">${receiptNo}</td>
+              </tr>
+              <tr>
+                <td class="label">Receipt Date:</td>
+                <td class="value">${dateStr}</td>
+              </tr>
+              <tr>
+                <td class="label">Donor Name:</td>
+                <td class="value">${donorName || 'Generous Supporter'}</td>
+              </tr>
+              <tr>
+                <td class="label">Donor Contact:</td>
+                <td class="value">${donorPhone || donorEmail || 'Verified Contributor'}</td>
+              </tr>
+              <tr>
+                <td class="label">Amount Contributed:</td>
+                <td class="value amount-highlight">${formatMoney(currentAmount)}</td>
+              </tr>
+              <tr>
+                <td class="label">Mode of Contribution:</td>
+                <td class="value">Official UPI Transfer (${NGO_CONFIG.upiId})</td>
+              </tr>
+              <tr>
+                <td class="label">UPI UTR / Reference ID:</td>
+                <td class="value" style="font-family: monospace; color: #166534;">${transactionId || 'UPI-' + Math.floor(100000000000 + Math.random() * 900000000000)}</td>
+              </tr>
+              <tr>
+                <td class="label">Designated Relief Purpose:</td>
+                <td class="value">Kolkata Platform Hunger Relief & Youth Empowerment Drives</td>
+              </tr>
+            </table>
+
+            <div class="tax-banner">
+              <strong>Section 80G Tax Exemption Certificate:</strong> This certifies that the above contribution is received by Next Gen Seva Foundation (CIN: ${NGO_CONFIG.registrationNo}). Donors are eligible for a 50% deduction from taxable income under Section 80G of the Income Tax Act, 1961.
+            </div>
+
+            <div class="footer-row">
+              <div class="org-stamp">
+                <strong>Next Gen Seva Foundation</strong><br/>
+                Kolkata Grassroots Field Operations<br/>
+                <em>Generated via Official NGSF Web Verification Portal</em>
+              </div>
+              <div class="signature-block">
+                <div class="signature-svg">Next Gen Seva Foundation</div>
+                <div class="signature-role">Authorized Signatory / Finance Trustee</div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+              }, 400);
+            };
+          </script>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+  };
+
   return (
     <div className="modal-overlay" onClick={resetModal}>
       <div 
@@ -751,14 +991,12 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
 
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
               <button
-                onClick={() => {
-                  window.print();
-                }}
+                onClick={handlePrintReceipt}
                 className="btn btn-outline"
                 style={{ padding: '0.75rem 1.4rem', fontSize: '0.88rem' }}
               >
                 <Download size={16} />
-                <span>Print / Save Receipt</span>
+                <span>Print / Save Official 80G Receipt (PDF)</span>
               </button>
 
               <button
