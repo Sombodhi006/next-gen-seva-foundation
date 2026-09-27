@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Heart, X, Check, ShieldCheck, QrCode, CreditCard, 
   Smartphone, Building, Download, Sparkles, AlertCircle, Utensils,
-  Palette, ShieldAlert, Cake
+  Palette, ShieldAlert, Cake, Copy, ExternalLink, FileCheck
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { DONATION_TIERS, NGO_CONFIG } from '../data/ngoData';
@@ -25,6 +25,8 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
   const [donorPhone, setDonorPhone] = useState('');
   const [paymentStep, setPaymentStep] = useState('select'); // 'select', 'checkout', 'success'
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('upi');
+  const [copiedUpi, setCopiedUpi] = useState(false);
+  const [transactionId, setTransactionId] = useState('');
 
   if (!isOpen) return null;
 
@@ -219,6 +221,28 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
                 >
                   $ USD
                 </button>
+              </div>
+            </div>
+
+            {/* Official 80G Tax Exemption & CIN Credentials */}
+            <div style={{
+              backgroundColor: 'rgba(20, 61, 43, 0.05)',
+              border: '1px solid rgba(20, 61, 43, 0.12)',
+              borderRadius: 'var(--radius-md)',
+              padding: '0.65rem 0.9rem',
+              marginBottom: '1.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '0.5rem'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-forest)' }}>
+                <ShieldCheck size={16} color="var(--color-sprout)" />
+                <span>80G & 12A Certified • 50% Tax Exemption</span>
+              </div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontFamily: 'monospace', fontWeight: 600 }}>
+                CIN: {NGO_CONFIG.registrationNo}
               </div>
             </div>
 
@@ -473,31 +497,120 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
               <div style={{
                 textAlign: 'center',
                 backgroundColor: 'var(--bg-canvas)',
-                padding: '1.5rem',
+                padding: '1.25rem',
                 borderRadius: 'var(--radius-md)',
-                marginBottom: '1.5rem',
-                border: '1px dashed var(--border-medium)'
+                marginBottom: '1.25rem',
+                border: '1px solid var(--border-medium)'
               }}>
+                {/* Real Official QR Code Image */}
                 <div style={{
-                  width: '140px',
-                  height: '140px',
-                  margin: '0 auto 1rem auto',
+                  maxWidth: '220px',
+                  margin: '0 auto 0.75rem auto',
                   backgroundColor: '#FFFFFF',
-                  padding: '0.6rem',
-                  borderRadius: 'var(--radius-sm)',
-                  boxShadow: 'var(--shadow-sm)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column'
+                  padding: '0.65rem',
+                  borderRadius: 'var(--radius-md)',
+                  boxShadow: 'var(--shadow-md)',
+                  border: '1px solid rgba(0,0,0,0.06)'
                 }}>
-                  <QrCode size={110} color="var(--color-forest)" />
+                  <img 
+                    src={NGO_CONFIG.upiQrImage} 
+                    alt="Official Google Pay UPI QR code of Next Gen Seva Foundation"
+                    style={{ width: '100%', height: 'auto', borderRadius: 'var(--radius-sm)', display: 'block' }}
+                  />
                 </div>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-forest)', marginBottom: '0.2rem' }}>
-                  Scan with GPay / PhonePe / Paytm
+
+                {/* Payee Info */}
+                <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--color-forest)', marginBottom: '0.15rem' }}>
+                  Payee: {NGO_CONFIG.payeeName}
                 </div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  UPI VPA: <span style={{ fontWeight: 700, color: 'var(--color-amber)' }}>{NGO_CONFIG.upiId}</span>
+                <div style={{ fontSize: '0.78rem', color: 'var(--color-amber)', fontWeight: 700, marginBottom: '0.75rem' }}>
+                  Authorized Representative • Next Gen Seva Foundation
+                </div>
+
+                {/* Copyable UPI ID Box */}
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  backgroundColor: '#FFFFFF',
+                  padding: '0.4rem 0.85rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: '1px solid var(--border-medium)',
+                  marginBottom: '0.85rem',
+                  maxWidth: '100%'
+                }}>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--color-forest)' }}>
+                    UPI ID: <strong>{NGO_CONFIG.upiId}</strong>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(NGO_CONFIG.upiId);
+                      setCopiedUpi(true);
+                      setTimeout(() => setCopiedUpi(false), 2000);
+                    }}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.25rem',
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      color: copiedUpi ? '#16A34A' : 'var(--color-forest)',
+                      border: 'none',
+                      background: 'none',
+                      cursor: 'pointer',
+                      padding: '0.2rem 0.4rem',
+                      borderRadius: 'var(--radius-sm)'
+                    }}
+                  >
+                    {copiedUpi ? <Check size={14} /> : <Copy size={14} />}
+                    <span>{copiedUpi ? 'Copied!' : 'Copy'}</span>
+                  </button>
+                </div>
+
+                {/* Direct Mobile UPI Intent Button */}
+                <div style={{ marginBottom: '1rem' }}>
+                  <a
+                    href={`upi://pay?pa=${NGO_CONFIG.upiId}&pn=${encodeURIComponent(NGO_CONFIG.payeeName)}&am=${currentAmount}&cu=INR&tn=${encodeURIComponent('Donation Next Gen Seva')}`}
+                    className="btn btn-primary"
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem 1rem',
+                      fontSize: '0.92rem',
+                      display: 'inline-flex',
+                      marginBottom: '0.35rem'
+                    }}
+                  >
+                    <Smartphone size={16} />
+                    <span>Pay Directly via UPI App (GPay / PhonePe)</span>
+                    <ExternalLink size={14} />
+                  </a>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                    Mobile users can tap above to launch Google Pay or PhonePe directly
+                  </span>
+                </div>
+
+                {/* UTR / Transaction Reference Input */}
+                <div style={{ textAlign: 'left', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.75rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.76rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
+                    Enter UPI Reference / UTR Number (From your payment screen):
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 426895123456"
+                    value={transactionId}
+                    onChange={(e) => setTransactionId(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '0.6rem 0.8rem',
+                      borderRadius: 'var(--radius-sm)',
+                      border: '1px solid var(--border-medium)',
+                      fontSize: '0.88rem'
+                    }}
+                  />
+                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'block', marginTop: '0.2rem' }}>
+                    Used to issue your 80G Tax Exemption receipt below
+                  </span>
                 </div>
               </div>
             ) : (
@@ -601,11 +714,23 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
                 <span style={{ fontWeight: 700, color: 'var(--color-forest)' }}>Receipt No:</span>
-                <span style={{ fontFamily: 'monospace' }}>NGSF-KOL-{Math.floor(100000 + Math.random() * 900000)}</span>
+                <span style={{ fontFamily: 'monospace', fontWeight: 700 }}>NGSF-80G-{Math.floor(100000 + Math.random() * 900000)}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Donor Name:</span>
                 <span style={{ fontWeight: 600 }}>{donorName || 'Generous Supporter'}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Registration (CIN):</span>
+                <span style={{ fontWeight: 700, fontFamily: 'monospace', color: 'var(--color-forest)' }}>{NGO_CONFIG.registrationNo}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>Tax Benefit Status:</span>
+                <span style={{ fontWeight: 700, color: 'var(--color-sprout)' }}>Section 80G & 12A Certified</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+                <span style={{ color: 'var(--text-muted)' }}>UPI Reference / UTR:</span>
+                <span style={{ fontWeight: 700, fontFamily: 'monospace' }}>{transactionId || 'UPI-' + Math.floor(100000000000 + Math.random() * 900000000000)}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Cause / Purpose:</span>
@@ -615,9 +740,12 @@ export default function DonationModal({ isOpen, onClose, initialTier = null }) {
                 <span style={{ color: 'var(--text-muted)' }}>Amount Contributed:</span>
                 <span style={{ fontWeight: 800, color: 'var(--color-forest)' }}>{formatMoney(currentAmount)}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.4rem', marginTop: '0.4rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Issued By:</span>
                 <span style={{ fontWeight: 600 }}>Next Gen Seva Foundation (Reg. 2021)</span>
+              </div>
+              <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontStyle: 'italic', marginTop: '0.4rem', textAlign: 'center' }}>
+                Eligible for 50% deduction under Section 80G of the Indian Income Tax Act.
               </div>
             </div>
 

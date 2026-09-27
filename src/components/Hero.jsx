@@ -152,8 +152,8 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
                   <ShieldCheck size={18} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-forest)' }}>100% Direct Relief</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Zero admin cuts from donations</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-forest)' }}>80G & 12A Certified</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>CIN: {NGO_CONFIG.registrationNo} • 50% Tax Saved</div>
                 </div>
               </div>
 
@@ -171,8 +171,8 @@ export default function Hero({ onOpenDonate, onOpenVolunteer }) {
                   <Sparkles size={18} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-forest)' }}>Youth-Led Impact</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>50+ volunteer students & professionals</div>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-forest)' }}>Youth-Led Kolkata Impact</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>50+ volunteer students & young professionals</div>
                 </div>
               </div>
             </div>

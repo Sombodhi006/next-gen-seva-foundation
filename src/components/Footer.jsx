@@ -154,14 +154,17 @@ export default function Footer({ onOpenDonate, onOpenVolunteer }) {
           justifyContent: 'space-between',
           gap: '1rem'
         }}>
-          <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.6)' }}>
-            © {new Date().getFullYear()} Next Gen Seva Foundation. Help Today • Build Tomorrow. All Rights Reserved.
+          <div style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.6)', maxWidth: '500px' }}>
+            <div>© {new Date().getFullYear()} Next Gen Seva Foundation. All Rights Reserved.</div>
+            <div style={{ fontSize: '0.74rem', color: 'rgba(255, 255, 255, 0.45)', marginTop: '0.25rem' }}>
+              CIN: {NGO_CONFIG.registrationNo} • Section 8 Non-Profit • 80G & 12A Certified (50% Tax Exemption for Donors)
+            </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <span style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.6)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
+            <span style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}>
               <ShieldCheck size={14} color="var(--color-sprout)" />
-              100% Direct Grassroots Impact
+              80G Tax Deductible • Direct Grassroots Impact
             </span>
 
             <button

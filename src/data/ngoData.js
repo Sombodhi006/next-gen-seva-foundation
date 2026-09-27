@@ -4,12 +4,18 @@ export const NGO_CONFIG = {
   foundedYear: 2021,
   city: "Kolkata, West Bengal",
   coverage: "Dum Dum, Sealdah, Platform Environs, Basti Clusters & Local Orphanages",
+  registrationNo: "U88900WB2026NPL289425", // Section 8 MCA Non-Profit CIN
+  registrationType: "Section 8 Non-Profit (Govt. of India)",
+  taxStatus: "80G & 12A Certified",
+  taxExemptionNote: "Donations are eligible for 50% Tax Deduction under Section 80G of the Income Tax Act",
   instagramHandle: "_the_next_gen_seva_foundation_",
   instagramUrl: "https://www.instagram.com/_the_next_gen_seva_foundation_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
   email: "connect@nextgenseva.org",
   phone: "+91 98300 00000",
   whatsappUrl: "https://wa.me/919830000000?text=Hi%20Next%20Gen%20Seva%20Foundation,%20I%20would%20like%20to%20support/volunteer!",
-  upiId: "nextgenseva@upi", // Can be replaced immediately when user provides official UPI
+  upiId: "hvt240201-2@oksbi", // Official Google Pay / UPI ID
+  payeeName: "Harsh Vt",
+  upiQrImage: "/images/next_gen_seva_official_upi_qr.jpg",
 };
 
 export const IMPACT_STATS = [
